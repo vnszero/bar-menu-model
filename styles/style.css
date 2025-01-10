@@ -208,7 +208,7 @@ ul li:hover {
     gap: 20px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 968px) {
     .hamburger {
         display: flex;
     }
