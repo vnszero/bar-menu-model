@@ -57,3 +57,24 @@ populateMenu("starter", starters);
 populateMenu("dishes", dishes);
 populateMenu("drinks", drinks);
 populateMenu("desserts", desserts);
+
+document.addEventListener("DOMContentLoaded", () => {
+    const hamburger = document.querySelector(".hamburger");
+    const navLinks = document.querySelector(".nav-links");
+    const links = document.querySelectorAll(".nav-links a"); // Select all nav links
+
+    // Toggle menu visibility
+    hamburger.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+        hamburger.classList.toggle("open");
+    });
+
+    // Close menu when a link is clicked
+    links.forEach(link => {
+        link.addEventListener("click", () => {
+            navLinks.classList.remove("active");
+            hamburger.classList.remove("open");
+        });
+    });
+});
+
