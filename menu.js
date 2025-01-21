@@ -1,17 +1,77 @@
-// Populate
-function populateMenu(categoryId, items) {
-    const categoryElement = document.querySelector(`#${categoryId} ul`);
-    items.forEach(item => {
-        const listItem = document.createElement("li");
-        const nameSpan = document.createElement("span");
-        const valueSpan = document.createElement("span");
-        
-        nameSpan.textContent = item.name;
-        valueSpan.textContent = `${item.value.toFixed(2)} €`;
-        
-        listItem.appendChild(nameSpan);
-        listItem.appendChild(valueSpan);
-        categoryElement.appendChild(listItem);
+// Utility function to capitalize first letters
+function capitalizeFirstLetter(string) {
+    return string
+        .split(" ")
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+}
+
+// Function to dynamically generate the categories
+function generateCategories(menuByCategory) {
+    const sectionElement = document.querySelector("main > section");
+    const navLinks = document.querySelector(".nav-links");
+
+    // Clear existing content (optional, if running multiple times)
+    sectionElement.innerHTML = "";
+    navLinks.innerHTML = "";
+
+    // Iterate through categories
+    Object.keys(menuByCategory).forEach(category => {
+        // Add link to navigation bar
+        const navLink = document.createElement("a");
+        navLink.href = `#${category}`;
+        navLink.textContent = capitalizeFirstLetter(category.replace("-", " "));
+        navLinks.appendChild(navLink);
+
+        // Create the article element
+        const article = document.createElement("article");
+        article.id = category;
+
+        // Add category title
+        const title = document.createElement("h2");
+        title.textContent = capitalizeFirstLetter(category.replace("-", " ")); // Beautify title
+        article.appendChild(title);
+
+        // Add a horizontal rule
+        const hr = document.createElement("hr");
+        article.appendChild(hr);
+
+        // Add the list of items
+        const ul = document.createElement("ul");
+        menuByCategory[category].forEach(item => {
+            const listItem = document.createElement("li");
+            const nameSpan = document.createElement("span");
+            const valueSpan = document.createElement("span");
+
+            nameSpan.textContent = item.name;
+            valueSpan.textContent = `${item.value.toFixed(2)} €`;
+
+            listItem.appendChild(nameSpan);
+            listItem.appendChild(valueSpan);
+            ul.appendChild(listItem);
+        });
+        article.appendChild(ul);
+
+        // Add the category image
+        const img = document.createElement("img");
+        img.src = `assets/menu-items/${category}.jpg`;
+        img.alt = category;
+        img.loading = "lazy";
+        article.appendChild(img);
+
+        // Append the article to the section
+        sectionElement.appendChild(article);
+    });
+
+    // Add event listeners to the navigation links
+    const links = document.querySelectorAll(".nav-links a");
+    links.forEach(link => {
+        link.addEventListener("click", () => {
+            const navLinks = document.querySelector(".nav-links");
+            const hamburger = document.querySelector(".hamburger");
+            navLinks.classList.remove("active");
+            hamburger.classList.remove("open");
+        });
     });
 }
 
@@ -34,33 +94,28 @@ async function loadMenuFromCSV(filePath) {
     const csvText = await response.text();
     const menuData = parseCSV(csvText);
 
-    // Organize items by category
-    const menuByCategory = {
-        starter: [],
-        dishes: [],
-        drinks: [],
-        desserts: []
-    };
-
+    // Organize items by category dynamically
+    const menuByCategory = {};
     menuData.forEach(item => {
         const category = item.category.toLowerCase();
-        if (menuByCategory[category]) {
-            menuByCategory[category].push({
-                name: item.name,
-                value: parseFloat(item.value.replace(",", "."))
-            });
+        if (!menuByCategory[category]) {
+            menuByCategory[category] = [];
         }
+        menuByCategory[category].push({
+            name: item.name,
+            value: parseFloat(item.value.replace(",", "."))
+        });
     });
 
-    // Populate menu categories
-    populateMenu("starter", menuByCategory.starter);
-    populateMenu("dishes", menuByCategory.dishes);
-    populateMenu("drinks", menuByCategory.drinks);
-    populateMenu("desserts", menuByCategory.desserts);
+    // Generate categories dynamically
+    generateCategories(menuByCategory);
 }
 
 // Event Listener
 document.addEventListener("DOMContentLoaded", () => {
+    // Load menu from CSV file
+    loadMenuFromCSV("menu.csv");
+
     const hamburger = document.querySelector(".hamburger");
     const navLinks = document.querySelector(".nav-links");
     const links = document.querySelectorAll(".nav-links a");
@@ -78,7 +133,4 @@ document.addEventListener("DOMContentLoaded", () => {
             hamburger.classList.remove("open");
         });
     });
-
-    // Load menu from CSV file
-    loadMenuFromCSV("menu.csv"); // Provide the correct path to your CSV file
 });
