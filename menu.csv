@@ -1,25 +1,39 @@
 category;name;value
-starter;Salada;3.0
-starter;Pão;2.0
-starter;Bruschetta;3.5
-starter;Sopa de Tomate;4.0
-starter;Azeitonas Temperadas;2.5
-starter;Patê de Fígado com Torradas;4.5
-dishes;Princesinha;8.0
-dishes;Prego no Prato;9.0
-dishes;Bacalhau à Brás;10.0
-dishes;Arroz de Pato;11.5
-dishes;Frango à Piri-Piri;7.5
-dishes;Lasagna de Vegetais;8.5
-drinks;Cerveja;3.5
-drinks;Refrigerante;2.5
-drinks;Água Mineral;1.5
-drinks;Vinho Tinto (taça);4.0
-drinks;Café;1.0
-drinks;Chá Verde;2.0
-desserts;Gelado;4.0
-desserts;Tarte de Maçã;5.0
-desserts;Pudim de Caramelo;4.5
-desserts;Bolo de Chocolate;5.0
-desserts;Cheesecake de Morango;5.5
-desserts;Mousse de Limão;4.0
+snacks;Amendoins (taça);0.60
+snacks;Batatas Fritas;1.50
+snacks;Cachorro;2.00
+snacks;Chupa Chups;0.40
+snacks;Gomas;1.00
+snacks;Kinder Bueno;1.20
+snacks;Kit Kat;0.90
+snacks;Lion;0.90
+snacks;Pipocas;1.20
+snacks;Snicker;1.00
+snacks;Pringles;1.50
+dishes;Hambúrguer;2.30
+desserts;Gelado;0.90
+desserts;Madalena;0.50
+desserts;Napolitana Cacau;0.60
+drinks;Água;0.50
+drinks;Água das Pedras;1.20
+drinks;Baileys;3.50
+drinks;Café;0.60
+drinks;Chá;0.50
+drinks;Coca-cola / Ice Tea;1.00
+drinks;Energético;1.00
+drinks;Favaios;0.80
+drinks;Gin Big Boss;5.00
+drinks;Gin (exceto Big Boss);4.00
+drinks;Jack Daniels CR&F (2 doses);5.00
+drinks;Martini c/ 7up;2.50
+drinks;Mini;0.80
+drinks;Monster;1.80
+drinks;Smirnoff;2.00
+drinks;Somersby;1.20
+drinks;Sumo (copo 20 cl);0.60
+promotion;Gelado;4.0
+promotion;Tarte de Maçã;5.0
+promotion;Pudim de Caramelo;4.5
+promotion;Bolo de Chocolate;5.0
+promotion;Cheesecake de Morango;5.5
+promotion;Mousse de Limão;4.0
